@@ -243,6 +243,8 @@ There are various things to care about when it comes to reading validator node s
 
 Note that the utilities `curl` and `jq` are used in these example operations, so you might want to install them first with `apt install curl jq`.
 
+Using the `near-cli` itself is also a popular way to extract very useful data out of the node.
+
 Here's how to check on the delegators to your validator node:
 
 ![Screen Shot 2022-09-07 at 04 44 00__SW45](https://user-images.githubusercontent.com/2597375/188749200-385dcbe5-5560-4337-95f6-d6ce2726e49f.png)
