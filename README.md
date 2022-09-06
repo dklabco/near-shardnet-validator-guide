@@ -1,5 +1,8 @@
 # near-shardnet-validator-guide
 
+# Forewords:
+This document was written in response to [Challenge 005 of the Stakewars III](https://github.com/near/stakewars-iii/blob/main/challenges/005.md) (an event regarding the NEAR Protocol, which is a Blockchain project / ecosystem)
+
 Part 1: Creating a new server instance & log in securely with the best practices
 ===
 
