@@ -176,10 +176,93 @@ Once `neard` is started as a service, you can follow its log like so: `journalct
 ------
 
 [Part 6: mount a shardnet staking pool](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#3-mounting-a-staking-pool)
+===
 
-TBA
+Now that the node is running, you need a Staking Pool contract to officially register yourself as a validator node. This was my command & its result:
 
-https://github.com/near/stakewars-iii/blob/main/challenges/004.md
+```
+NEAR_ENV=shardnet near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "dklabco", "owner_id": "zur.shardnet.near", "stake_public_key": "ed25519:5Hg5KdmNy5X4K6uCZq686YgPrHk9gVZ6d48JtFXPtmQc", "reward_fee_fraction": {"numerator": 7, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="zur.shardnet.near" --amount=30 --gas=300000000000000
+Scheduling a call: factory.shardnet.near.create_staking_pool({"staking_pool_id": "dklabco", "owner_id": "zur.shardnet.near", "stake_public_key": "ed25519:5Hg5KdmNy5X4K6uCZq686YgPrHk9gVZ6d48JtFXPtmQc", "reward_fee_fraction": {"numerator": 7, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}) with attached 30 NEAR
+Doing account.functionCall()
+Retrying request to broadcast_tx_commit as it has timed out [
+  'EQAAAHp1ci5zaGFyZG5ldC5uZWFyAKPx0+Cfn9MhH7zBjbaU/ZBvVaMS+8S36Ybn2VIVB2Q8Qy8joQIBAAAVAAAAZmFjdG9yeS5zaGFyZG5ldC5uZWFyXRpZ0zv5rLt/4W4BujQfWuiB9bBEXK6Q+c4uyDn8skcBAAAAAhMAAABjcmVhdGVfc3Rha2luZ19wb29s+QAAAHsic3Rha2luZ19wb29sX2lkIjoiZGtsYWJjbyIsIm93bmVyX2lkIjoienVyLnNoYXJkbmV0Lm5lYXIiLCJzdGFrZV9wdWJsaWNfa2V5IjoiZWQyNTUxOTo1SGc1S2RtTnk1WDRLNnVDWnE2ODZZZ1BySGs5Z1ZaNmQ0OEp0RlhQdG1RYyIsInJld2FyZF9mZWVfZnJhY3Rpb24iOnsibnVtZXJhdG9yIjo3LCJkZW5vbWluYXRvciI6MTAwfSwiY29kZV9oYXNoIjoiREQ0MjhnOWVxTEw4ZldVeHY4UVNwVkZ6eUhpMVFkMTZQOGVwaFlDVG1NU1oifQDAbjHZEAEAAAAA3tgDPEK/0BgAAAAAAACIKI0kWW8sz/KmjnZQOnZ+Du1ko1xolmbHv+TJHLmx5BBwKTMCcxXD0cua6R18yoMU8aSiV+JE5HRGeDdcSUII'
+]
+Retrying request to broadcast_tx_commit as it has timed out [
+  'EQAAAHp1ci5zaGFyZG5ldC5uZWFyAKPx0+Cfn9MhH7zBjbaU/ZBvVaMS+8S36Ybn2VIVB2Q8Qy8joQIBAAAVAAAAZmFjdG9yeS5zaGFyZG5ldC5uZWFyXRpZ0zv5rLt/4W4BujQfWuiB9bBEXK6Q+c4uyDn8skcBAAAAAhMAAABjcmVhdGVfc3Rha2luZ19wb29s+QAAAHsic3Rha2luZ19wb29sX2lkIjoiZGtsYWJjbyIsIm93bmVyX2lkIjoienVyLnNoYXJkbmV0Lm5lYXIiLCJzdGFrZV9wdWJsaWNfa2V5IjoiZWQyNTUxOTo1SGc1S2RtTnk1WDRLNnVDWnE2ODZZZ1BySGs5Z1ZaNmQ0OEp0RlhQdG1RYyIsInJld2FyZF9mZWVfZnJhY3Rpb24iOnsibnVtZXJhdG9yIjo3LCJkZW5vbWluYXRvciI6MTAwfSwiY29kZV9oYXNoIjoiREQ0MjhnOWVxTEw4ZldVeHY4UVNwVkZ6eUhpMVFkMTZQOGVwaFlDVG1NU1oifQDAbjHZEAEAAAAA3tgDPEK/0BgAAAAAAACIKI0kWW8sz/KmjnZQOnZ+Du1ko1xolmbHv+TJHLmx5BBwKTMCcxXD0cua6R18yoMU8aSiV+JE5HRGeDdcSUII'
+]
+Retrying request to broadcast_tx_commit as it has timed out [
+  'EQAAAHp1ci5zaGFyZG5ldC5uZWFyAKPx0+Cfn9MhH7zBjbaU/ZBvVaMS+8S36Ybn2VIVB2Q8Qy8joQIBAAAVAAAAZmFjdG9yeS5zaGFyZG5ldC5uZWFyXRpZ0zv5rLt/4W4BujQfWuiB9bBEXK6Q+c4uyDn8skcBAAAAAhMAAABjcmVhdGVfc3Rha2luZ19wb29s+QAAAHsic3Rha2luZ19wb29sX2lkIjoiZGtsYWJjbyIsIm93bmVyX2lkIjoienVyLnNoYXJkbmV0Lm5lYXIiLCJzdGFrZV9wdWJsaWNfa2V5IjoiZWQyNTUxOTo1SGc1S2RtTnk1WDRLNnVDWnE2ODZZZ1BySGs5Z1ZaNmQ0OEp0RlhQdG1RYyIsInJld2FyZF9mZWVfZnJhY3Rpb24iOnsibnVtZXJhdG9yIjo3LCJkZW5vbWluYXRvciI6MTAwfSwiY29kZV9oYXNoIjoiREQ0MjhnOWVxTEw4ZldVeHY4UVNwVkZ6eUhpMVFkMTZQOGVwaFlDVG1NU1oifQDAbjHZEAEAAAAA3tgDPEK/0BgAAAAAAACIKI0kWW8sz/KmjnZQOnZ+Du1ko1xolmbHv+TJHLmx5BBwKTMCcxXD0cua6R18yoMU8aSiV+JE5HRGeDdcSUII'
+]
+Retrying request to broadcast_tx_commit as it has timed out [
+  'EQAAAHp1ci5zaGFyZG5ldC5uZWFyAKPx0+Cfn9MhH7zBjbaU/ZBvVaMS+8S36Ybn2VIVB2Q8Qy8joQIBAAAVAAAAZmFjdG9yeS5zaGFyZG5ldC5uZWFyXRpZ0zv5rLt/4W4BujQfWuiB9bBEXK6Q+c4uyDn8skcBAAAAAhMAAABjcmVhdGVfc3Rha2luZ19wb29s+QAAAHsic3Rha2luZ19wb29sX2lkIjoiZGtsYWJjbyIsIm93bmVyX2lkIjoienVyLnNoYXJkbmV0Lm5lYXIiLCJzdGFrZV9wdWJsaWNfa2V5IjoiZWQyNTUxOTo1SGc1S2RtTnk1WDRLNnVDWnE2ODZZZ1BySGs5Z1ZaNmQ0OEp0RlhQdG1RYyIsInJld2FyZF9mZWVfZnJhY3Rpb24iOnsibnVtZXJhdG9yIjo3LCJkZW5vbWluYXRvciI6MTAwfSwiY29kZV9oYXNoIjoiREQ0MjhnOWVxTEw4ZldVeHY4UVNwVkZ6eUhpMVFkMTZQOGVwaFlDVG1NU1oifQDAbjHZEAEAAAAA3tgDPEK/0BgAAAAAAACIKI0kWW8sz/KmjnZQOnZ+Du1ko1xolmbHv+TJHLmx5BBwKTMCcxXD0cua6R18yoMU8aSiV+JE5HRGeDdcSUII'
+]
+Retrying request to broadcast_tx_commit as it has timed out [
+  'EQAAAHp1ci5zaGFyZG5ldC5uZWFyAKPx0+Cfn9MhH7zBjbaU/ZBvVaMS+8S36Ybn2VIVB2Q8Qy8joQIBAAAVAAAAZmFjdG9yeS5zaGFyZG5ldC5uZWFyXRpZ0zv5rLt/4W4BujQfWuiB9bBEXK6Q+c4uyDn8skcBAAAAAhMAAABjcmVhdGVfc3Rha2luZ19wb29s+QAAAHsic3Rha2luZ19wb29sX2lkIjoiZGtsYWJjbyIsIm93bmVyX2lkIjoienVyLnNoYXJkbmV0Lm5lYXIiLCJzdGFrZV9wdWJsaWNfa2V5IjoiZWQyNTUxOTo1SGc1S2RtTnk1WDRLNnVDWnE2ODZZZ1BySGs5Z1ZaNmQ0OEp0RlhQdG1RYyIsInJld2FyZF9mZWVfZnJhY3Rpb24iOnsibnVtZXJhdG9yIjo3LCJkZW5vbWluYXRvciI6MTAwfSwiY29kZV9oYXNoIjoiREQ0MjhnOWVxTEw4ZldVeHY4UVNwVkZ6eUhpMVFkMTZQOGVwaFlDVG1NU1oifQDAbjHZEAEAAAAA3tgDPEK/0BgAAAAAAACIKI0kWW8sz/KmjnZQOnZ+Du1ko1xolmbHv+TJHLmx5BBwKTMCcxXD0cua6R18yoMU8aSiV+JE5HRGeDdcSUII'
+]
+Receipts: 3SmSL8dK9jjfFkDjSNKMAmyYtgLKaZCv5dzeskebBTof, 6iW39NYeZEneV34VoveBrV3LWzLtMsETc1TqJ1tutrRe
+	Log [factory.shardnet.near]: The staking pool @dklabco.factory.shardnet.near was successfully created. Whitelisting...
+Transaction Id 4SJJjXk7SKpa37FtNE7keYePEVr6EdjXpUDVGHjg3TSS
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.shardnet.near.org/transactions/4SJJjXk7SKpa37FtNE7keYePEVr6EdjXpUDVGHjg3TSS
+```
+
+Once the Staking Pool contract was created, anyone can stake money to your pool (including yourself aka self-stake). The command & the result for me was like so:
+
+```
+NEAR_ENV=shardnet near call dklabco.factory.shardnet.near deposit_and_stake --amount 502 --accountId zur.shardnet.near --gas=300000000000000
+Scheduling a call: dklabco.factory.shardnet.near.deposit_and_stake() with attached 502 NEAR
+Doing account.functionCall()
+Retrying request to broadcast_tx_commit as it has timed out [
+  'EQAAAHp1ci5zaGFyZG5ldC5uZWFyAJK6q9Nv36VvBvjnUgQ0zS1RHF6Nn1jpkyO78HPJi3j9gV0qousAAAAdAAAAZGtsYWJjby5mYWN0b3J5LnNoYXJkbmV0Lm5lYXJKU+0RONpS+G8xWWLCjEDxBMtfKAmFk2khQ48cidYqcQEAAAACEQAAAGRlcG9zaXRfYW5kX3N0YWtlAgAAAHt9AMBuMdkQAQAAAAC2+dmFh6I+nwEAAAAAAL7P5+dxJT+ts9dFAL6jOHS3yxkiF8Di+OC1wJRxdCB0zY99sywqBQitdcezw5GxRa1XZapQ/2hLKZygUmVtggE='
+]
+Receipts: 4tjeD9VE7bU5Rbk9cCtRMfAyujTwv8qKnH8nDFfP73Jx, 5TwKKhvcAoZ2ZV4hHC1qARKW2obw2tmvX1Z1Tgiu7TPM, CD8Y1AvEnTtjvaWbhFw6QR3xbbtmoRuaWLCeEofbLux5
+	Log [dklabco.factory.shardnet.near]: @zur.shardnet.near deposited 502000000000000000000000000. New unstaked balance is 502000000000000000000000000
+	Log [dklabco.factory.shardnet.near]: @zur.shardnet.near staking 502000000000000000000000000. Received 502000000000000000000000000 new staking shares. Total 0 unstaked balance and 502000000000000000000000000 staking shares
+	Log [dklabco.factory.shardnet.near]: Contract total staked balance is 531999999999999000000000000. Total number of shares 531999999999999000000000000
+Transaction Id AGAjfmc3fFRAZ5dZeWGuYiNU4YtfS49XCsGwxiYfPNmR
+To see the transaction in the transaction explorer, please open this url in your browser
+https://explorer.shardnet.near.org/transactions/AGAjfmc3fFRAZ5dZeWGuYiNU4YtfS49XCsGwxiYfPNmR
+''
+```
+
+The above suggests that I've successfully self-staked (self-delegated) my first 502 NEAR tokens to my shardnet validator node.
+
+Please feel free to [explore](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#unstake-near) [the](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#withdraw) [remaining](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#ping) [contract](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#staked-balance) [calls](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#unstaked-balance) [as](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#available-for-withdrawal) [mentioned](https://github.com/near/stakewars-iii/blob/main/challenges/003.md#pause--resume-staking) in the stakewars challenge guideline.
+
+An example of calling the method `is_account_unstaked_balance_available` on my staking pool for one of my delegator accounts:
+![Screen Shot 2022-09-07 at 05 03 10__SW43](https://user-images.githubusercontent.com/2597375/188748548-919cc90d-19fd-41fc-bafc-9df893a2c3b1.png)
+
+---
+
+[Part 7: reading status from your validator node](https://github.com/near/stakewars-iii/blob/main/challenges/004.md)
+===
+
+There are various things to care about when it comes to reading validator node status. The RPC API is one widely used approach. Here's an example of reading the `neard` build version:
+
+![Screen Shot 2022-09-07 at 04 43 05__SW44](https://user-images.githubusercontent.com/2597375/188748866-7de9232c-d676-48cb-812f-6dad1d467930.png)
+
+Note that the utilities `curl` and `jq` are used in these example operations, so you might want to install them first with `apt install curl jq`.
+
+Here's how to check on the delegators to your validator node:
+
+![Screen Shot 2022-09-07 at 04 44 00__SW45](https://user-images.githubusercontent.com/2597375/188749200-385dcbe5-5560-4337-95f6-d6ce2726e49f.png)
+
+And here's an example call to check why your node will be kicked out of the active validator pool:
+
+![Screen Shot 2022-09-07 at 05 17 49__SW46](https://user-images.githubusercontent.com/2597375/188750360-5337d55e-a07d-4898-8a59-923dc54b832c.png)
+
+Note that the call above returned "empty" because the node will not be kicked out due to any malperformance during the current epoch.
+If the node performs poorly, the "kickout reason" shall be displayed like in this example:
+
+```
+curl -s -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' 176.9.84.61:3030 | jq -c '.result.prev_epoch_kickout[] | select(.account_id | contains ("dklabco.factory.shardnet.near"))' | jq .reason
+{
+  "NotEnoughChunks": {
+    "expected": 3,
+    "produced": 1
+  }
+}
+```
 
 ------
 
