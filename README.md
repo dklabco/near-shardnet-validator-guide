@@ -266,7 +266,7 @@ curl -s -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params
 }
 ```
 
-------
+Besides the cli tools, you can always look around for UI tools that might be more convenient (at times / to some people). For example, we at DKLAB developed [this tool](https://near-validator-manager.adaptable.app/validator/dklabco.factory.shardnet.near/get_accounts/view) to check on a validator nodes' delegators (and their status).
 
 
 
